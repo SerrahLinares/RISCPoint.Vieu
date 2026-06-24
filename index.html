@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RISCPoint GTM Strategy Brief · Vieu · June 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:       #1A1818;
+    --ink-mid:   #3D3A3A;
+    --ink-soft:  #7A7575;
+    --rule:      #E2DFDC;
+    --paper:     #F8F6F3;
+    --white:     #FFFFFF;
+    --accent:    #7744FF;
+    --accent-lt: #EDE8FF;
+    --gold:      #B8892A;
+    --gold-lt:   #FDF5E4;
+    --red:       #C0392B;
+    --green:     #1D7A4A;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans:  'DM Sans', system-ui, sans-serif;
+    --max:   860px;
+  }
+  html { font-size: 16px; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .page { max-width: var(--max); margin: 0 auto; padding: 0 40px 80px; }
+
+  /* Cover */
+  .cover { padding: 72px 0 56px; border-bottom: 1px solid var(--ink); margin-bottom: 56px; }
+  .cover-eyebrow { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .cover-eyebrow::before { content: ''; display: block; width: 24px; height: 1.5px; background: var(--accent); }
+  .cover-title { font-family: var(--serif); font-size: clamp(44px, 6vw, 62px); line-height: 1.07; color: var(--ink); margin-bottom: 10px; }
+  .cover-title em { font-style: italic; color: var(--accent); }
+  .cover-sub { font-size: 17px; color: var(--ink-mid); font-weight: 300; margin-bottom: 36px; max-width: 560px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .cover-meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .cover-meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+
+  /* Sections */
+  .section { margin-bottom: 64px; }
+  .section + .section { padding-top: 48px; border-top: 1px solid var(--rule); }
+  .section-number { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-family: var(--serif); font-size: 28px; line-height: 1.18; color: var(--ink); margin-bottom: 20px; }
+  .section-intro { font-size: 15px; color: var(--ink-mid); line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+
+  /* Stat strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin-bottom: 40px; }
+  .stat-cell { background: var(--white); padding: 24px 22px; }
+  .stat-num { font-family: var(--serif); font-size: 36px; line-height: 1; color: var(--accent); margin-bottom: 6px; }
+  .stat-label { font-size: 12px; font-weight: 500; color: var(--ink-soft); line-height: 1.4; }
+
+  /* Pull quote */
+  .pull-quote { border-left: 3px solid var(--accent); padding: 16px 24px; background: var(--accent-lt); border-radius: 0 6px 6px 0; margin: 28px 0; }
+  .pull-quote p { font-family: var(--serif); font-size: 18px; line-height: 1.5; color: var(--ink); font-style: italic; }
+  .pull-quote cite { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-style: normal; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cards.three { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px; }
+  .card-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .card-title { font-family: var(--serif); font-size: 17px; line-height: 1.25; margin-bottom: 10px; color: var(--ink); }
+  .card-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+  .card.accent-top { border-top: 3px solid var(--accent); }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* Tags */
+  .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tag { font-size: 11.5px; font-weight: 500; padding: 4px 12px; border-radius: 20px; background: var(--white); border: 1px solid var(--rule); color: var(--ink-mid); }
+  .tag.tier1 { background: var(--accent); color: var(--white); border-color: var(--accent); font-weight: 600; }
+  .tag.tier2 { background: var(--accent-lt); color: var(--accent); border-color: var(--accent); }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .data-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--ink); padding: 10px 14px; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-mid); line-height: 1.55; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--white); }
+  .data-table tr:nth-child(odd) td { background: var(--paper); }
+  .data-table td strong { color: var(--ink); font-weight: 600; }
+
+  /* Priority list */
+  .priority-list { counter-reset: priority; list-style: none; }
+  .priority-list li { counter-increment: priority; display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .priority-list li:last-child { border-bottom: none; }
+  .priority-list li::before { content: counter(priority, decimal-leading-zero); font-family: var(--serif); font-size: 24px; color: var(--accent); line-height: 1; margin-top: 2px; }
+  .priority-item-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .priority-item-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--rule); }
+  .timeline-item { position: relative; margin-bottom: 28px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -25px; top: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--paper); z-index: 1; }
+  .timeline-dot.filled { background: var(--accent); }
+  .timeline-phase { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .timeline-head { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .timeline-body { font-size: 13px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* Vieu dark box */
+  .vieu-box { background: var(--ink); border-radius: 10px; padding: 32px 36px; color: var(--white); }
+  .vieu-box-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .vieu-box h3 { font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 16px; line-height: 1.3; }
+  .vieu-box > p { font-size: 13.5px; color: rgba(255,255,255,0.72); line-height: 1.7; margin-bottom: 24px; }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+  .pillar { border: 1px solid rgba(255,255,255,0.18); border-radius: 6px; padding: 18px 16px; text-align: center; }
+  .pillar-text { font-size: 13.5px; font-weight: 600; color: var(--white); line-height: 1.35; }
+
+  /* Delivery matrix */
+  .del-matrix-wrap { position: relative; margin-top: 4px; }
+  .del-matrix { width: 100%; border-collapse: collapse; }
+  .del-matrix th { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .del-matrix th.label-col { text-align: left; width: 60%; color: rgba(255,255,255,0.45); }
+  .del-matrix th.delivers-col { color: var(--accent); border-bottom: 2px solid var(--accent); }
+  .del-matrix th.access-col  { color: rgba(255,255,255,0.45); }
+  .del-matrix td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: middle; }
+  .del-matrix tr:last-child td { border-bottom: none; }
+  .del-matrix td.label-col { padding-left: 0; }
+  .del-matrix td.icon-col  { text-align: center; width: 20%; }
+  .row-num { display: inline-block; background: rgba(119,68,255,0.35); color: var(--accent); font-size: 10px; font-weight: 700; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; margin-right: 10px; flex-shrink: 0; }
+  .row-label-wrap { display: flex; align-items: flex-start; }
+  .row-label-inner { display: flex; flex-direction: column; }
+  .row-title { font-size: 13.5px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .row-desc  { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+  .mark-delivers { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; border: 1.5px solid var(--accent); background: rgba(119,68,255,0.2); }
+  .mark-delivers svg { width: 12px; height: 12px; stroke: var(--accent); stroke-width: 2.5; fill: none; }
+  .mark-access { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,0.18); background: transparent; }
+  .mark-access svg { width: 6px; height: 6px; fill: rgba(255,255,255,0.35); stroke: none; }
+
+  /* AWS marketplace link box */
+  .marketplace-box { background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .marketplace-box-text { font-size: 13px; color: var(--ink-mid); line-height: 1.55; }
+  .marketplace-box-text strong { color: var(--ink); display: block; margin-bottom: 4px; font-size: 14px; }
+  .marketplace-link { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 4px; padding: 7px 16px; text-decoration: none; white-space: nowrap; }
+  .marketplace-link:hover { background: var(--accent-lt); }
+
+  /* Footer */
+  .doc-footer { padding-top: 36px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-top: 64px; }
+  .footer-left { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+  .footer-vieu { font-size: 22px; font-family: var(--serif); color: var(--ink-soft); }
+
+  @media print { body { background: white; } .page { padding: 0 0 48px; } .cover { padding: 48px 0 40px; } }
+  @media (max-width: 640px) {
+    .page { padding: 0 20px 60px; }
+    .cards, .cards.three, .two-col, .pillars { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .cover-title { font-size: 36px; }
+    .marketplace-box { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-eyebrow">GTM Strategy Brief</div>
+    <h1 class="cover-title">RISCPoint<br><em>Go-to-Market</em><br>Strategy</h1>
+    <p class="cover-sub">A structured framework for scaling trusted access into regulated enterprise accounts — moving from relationship-led selling to a repeatable, intelligence-driven growth motion across federal, commercial, and international markets.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Prepared by</span>
+        <span class="cover-meta-value">Vieu</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Prepared for</span>
+        <span class="cover-meta-value">Jake Nix, Chief Growth Officer</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Date</span>
+        <span class="cover-meta-value">June 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Engagement</span>
+        <span class="cover-meta-value">AWS BOX · 5 Month</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 WHAT IS VIEU -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <h2 class="section-title">What Is Vieu</h2>
+    <p class="section-intro">Vieu is not a lead generation tool. It is an intelligence layer built on 9 billion executive relationships that tells your team which accounts to pursue, why now, who to talk to, how to reach them through your existing network, and what to say when you get there. The output is structured to be immediately actionable by your sales team without additional research.</p>
+
+    <div class="two-col" style="margin-bottom: 28px;">
+      <div>
+        <div class="card accent-top" style="height:100%;">
+          <div class="card-eyebrow">What the Graph Indexes</div>
+          <div class="card-title">People, Companies, and the Signals Between Them</div>
+          <div class="card-body" style="line-height:1.8;">
+            Vieu pulls from 40+ public data sources and enriches across three layers:
+            <ul style="list-style:none; margin-top:12px; padding:0;">
+              <li style="padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--rule);"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> Professional history and current roles</li>
+              <li style="padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--rule);"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> Social media interactions: shared posts, comments, likes</li>
+              <li style="padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--rule);"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> Conference panels and speaking appearances together</li>
+              <li style="padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--rule);"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> Alumni and shared company tenure</li>
+              <li style="padding:5px 0 5px 18px; position:relative; border-bottom:1px solid var(--rule);"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> News mentions, press coverage, and public announcements</li>
+              <li style="padding:5px 0 5px 18px; position:relative;"><span style="position:absolute;left:0;color:var(--accent);font-weight:700;">+</span> Job postings, technographic signals, and company filings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="card">
+          <div class="card-eyebrow">Relationship Scoring</div>
+          <div class="card-title">Strength, Not Just Existence</div>
+          <div class="card-body">Every connection in the graph is scored for strength based on frequency, recency, and type of interaction. A path where two people worked together for two years and have interacted publicly multiple times ranks higher than a one-time connection. The strongest paths surface first.</div>
+        </div>
+        <div class="card">
+          <div class="card-eyebrow">Applied to GTM</div>
+          <div class="card-title">From Signal to Meeting</div>
+          <div class="card-body">Given any target account and any target stakeholder, Vieu finds the shortest, strongest path from your network to that person — with the context to make the introduction credible: what connects the two people, when they last interacted, and what to reference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The connection is just one source of information. We have a list of 40 different data sources we enrich across to build the connection graph. Every interaction that is public, we have access to."</p>
+      <cite>Bhavik Jain, Customer Success · Vieu</cite>
+    </div>
+  </div>
+
+  <!-- 02 WHAT YOU WILL GET -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <h2 class="section-title">What You Will Get</h2>
+    <p class="section-intro">Vieu delivers 1,000 strong-fit, bounce-verified stakeholders and decision-makers across RISCPoint's target buying committee. That list is the foundation. After your onboarding session, your team uses Vieu's full intelligence stack — connection paths, org charts, account plans, technographics — directly in the platform to prioritize, research, and reach those contacts with context and credibility.</p>
+
+    <div style="margin-bottom:36px;">
+      <p style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:16px;">What Vieu Delivers + What Your Team Runs</p>
+      <div style="display:flex; flex-direction:column; gap:0;">
+
+        <div style="display:grid; grid-template-columns:160px 1fr; border:1px solid var(--rule); border-radius:8px 8px 0 0; overflow:hidden;">
+          <div style="background:var(--accent); padding:20px 18px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:6px;">Delivered by Vieu</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif; font-size:17px; color:#fff; line-height:1.2;">1,000 Verified Contacts</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.8); margin-top:8px; font-weight:600;">Stakeholders + decision-makers</div>
+          </div>
+          <div style="background:var(--white); padding:20px 22px;">
+            <div style="font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;">1,000 bounce-verified contacts ranked by fit for RISCPoint's buying committee</div>
+            <div style="font-size:13px; color:var(--ink-mid); line-height:1.65;">Waterfall enrichment across multiple data vendors surfaces 1,000 verified contacts across RISCPoint's target buyer set: CISOs, GRC Directors, CIOs, FedRAMP Program Managers, and compliance leaders at regulated enterprises, cloud-dependent mid-market companies, and defense-adjacent organizations. Every contact is scored by fit before your team touches it. This is your outreach foundation — everything else in the platform helps you act on it.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:160px 1fr; border:1px solid var(--rule); border-top:none; overflow:hidden;">
+          <div style="background:var(--ink); padding:20px 18px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px;">Your Team Runs</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif; font-size:17px; color:#fff; line-height:1.2;">Stakeholder Maps + Org Charts</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.65); margin-top:8px; font-weight:600;">Know the full buying committee</div>
+          </div>
+          <div style="background:var(--white); padding:20px 22px;">
+            <div style="font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;">Map the full decision-making structure around every target account</div>
+            <div style="font-size:13px; color:var(--ink-mid); line-height:1.65;">For any account in your target list, your team runs a stakeholder map directly in the platform — identifying who owns security, compliance, cloud, and procurement decisions, who influences, and who can accelerate. Org chart views show reporting lines and buying committee structure so outreach is always targeted at the right level, not the wrong door.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:160px 1fr; border:1px solid var(--rule); border-top:none; overflow:hidden;">
+          <div style="background:var(--ink); padding:20px 18px; display:flex; flex-direction:column; justify-content:center; border-top:1px solid rgba(255,255,255,0.08);">
+            <div style="font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px;">Your Team Runs</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif; font-size:17px; color:#fff; line-height:1.2;">Technographics</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.65); margin-top:8px; font-weight:600;">Prioritize by what they're running</div>
+          </div>
+          <div style="background:var(--white); padding:20px 22px;">
+            <div style="font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;">Surface accounts using tools that signal the need for RISCPoint's services</div>
+            <div style="font-size:13px; color:var(--ink-mid); line-height:1.65;">Filter the 1,000-contact list by technology signals: accounts running Vanta or Drata (approaching the advisory ceiling), AWS-dependent organizations with upcoming compliance milestones, or security stacks where RADAR's PTaaS offering creates a natural opening. Technographics turn a ranked list into a sequenced outreach plan.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:160px 1fr; border:1px solid var(--rule); border-top:none; border-radius:0 0 8px 8px; overflow:hidden;">
+          <div style="background:var(--ink); padding:20px 18px; display:flex; flex-direction:column; justify-content:center; border-top:1px solid rgba(255,255,255,0.08);">
+            <div style="font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:6px;">Your Team Runs</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif; font-size:17px; color:#fff; line-height:1.2;">Account Plans + Connection Paths</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.65); margin-top:8px; font-weight:600;">Build context, find the entry point</div>
+          </div>
+          <div style="background:var(--white); padding:20px 22px;">
+            <div style="font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;">Deep account POVs and the fastest path in from RISCPoint's network</div>
+            <div style="font-size:13px; color:var(--ink-mid); line-height:1.65;">For priority accounts, your team builds account plans directly in Vieu — strategic context, buying signals, and identified trigger points — then runs connection path searches to find who in RISCPoint's network can make a credible introduction. Each plan feeds directly into an ACE opportunity submission. The platform surfaces both the intelligence and the entry point in the same session.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="stat-strip" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="stat-cell">
+        <div class="stat-num">1,000</div>
+        <div class="stat-label">Bounce-verified leads<br>ranked by fit for RISCPoint's ICP</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">ACE opportunities targeted<br>over the first 4 months</div>
+      </div>
+    </div>
+
+    <div class="marketplace-box">
+      <div class="marketplace-box-text">
+        <strong>RISCPoint on AWS Marketplace</strong>
+        RISCPoint's cybersecurity and compliance services are available directly through the AWS Marketplace — making it easier for AWS customers to evaluate and procure against existing cloud spend.
+      </div>
+      <a href="https://aws.amazon.com/marketplace/pp/prodview-jbiraljrtsgri" target="_blank" class="marketplace-link">View on AWS Marketplace &rarr;</a>
+    </div>
+  </div>
+
+  <!-- 03 THE VIEU ENGAGEMENT PLAN -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <h2 class="section-title">The Vieu Engagement Plan</h2>
+    <p class="section-intro">Vieu maps RISCPoint's extended network against the target account list to surface the warmest introduction paths to VP-level and above stakeholders across security, compliance, cloud, and federal markets. After your onboarding session, your team owns execution — running searches, building account plans, and activating warm paths directly in the platform.</p>
+
+    <div class="vieu-box">
+      <div class="vieu-box-label">Vieu · 5-Month AWS BOX Engagement</div>
+      <h3>Warm introduction paths into regulated accounts, backed by the full intelligence stack.</h3>
+      <p>Vieu gives your team the infrastructure to find the right people, understand the right context, and reach out through trusted connections rather than cold outreach. For RISCPoint's credibility-led growth model, this is not a bolt-on tool. It is how the GTM motion scales without diluting the brand.</p>
+
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-text">Fast track decision maker access</div></div>
+        <div class="pillar"><div class="pillar-text">Strategic account intelligence</div></div>
+        <div class="pillar"><div class="pillar-text">Stakeholder intelligence</div></div>
+      </div>
+
+      <div class="del-matrix-wrap">
+      <table class="del-matrix">
+        <thead>
+          <tr>
+            <th class="label-col"></th>
+            <th class="delivers-col">Warm Paths</th>
+            <th class="access-col">Your Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">01</span><div class="row-label-inner"><span class="row-title">Verified contact details</span><span class="row-desc">1,000 bounce-verified contacts enriched across multiple data vendors</span></div></div></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">02</span><div class="row-label-inner"><span class="row-title">Connection paths</span><span class="row-desc">Accelerate decision maker access using your company's full network</span></div></div></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">03</span><div class="row-label-inner"><span class="row-title">Account plan</span><span class="row-desc">Deep account POV with contextual research aligned to your sales stages</span></div></div></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">04</span><div class="row-label-inner"><span class="row-title">Stakeholder map &amp; org chart</span><span class="row-desc">Know the decision makers and influencers across all buying groups</span></div></div></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">05</span><div class="row-label-inner"><span class="row-title">Opportunities</span><span class="row-desc">Identify trigger points where Vieu can drive outcomes for target accounts</span></div></div></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+          <tr>
+            <td class="label-col"><div class="row-label-wrap"><span class="row-num">06</span><div class="row-label-inner"><span class="row-title">Technographics</span><span class="row-desc">Know who&#39;s using competitor or complementary tech, and in what context</span></div></div></td>
+            <td class="icon-col"><span class="mark-access"><svg viewBox="0 0 8 8"><circle cx="4" cy="4" r="2" fill="rgba(255,255,255,0.4)"/></svg></span></td>
+            <td class="icon-col"><span class="mark-delivers"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:18px; font-style:italic; line-height:1.6;">After your onboarding session, your team runs all six capabilities directly in the platform. Vieu CS is available for support — your team owns execution.</p>
+    </div>
+  </div>
+
+  <!-- 04 THE MARKET MOMENT -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <h2 class="section-title">The Market Moment</h2>
+    <p class="section-intro">RISCPoint enters this engagement at a precisely timed inflection point. A new CEO appointed in August 2025 tied the leadership transition explicitly to expansion across federal, commercial, and international markets. The compliance advisory market is simultaneously undergoing trust erosion from commodity SOC 2 offerings — the exact problem RISCPoint's founder is publicly diagnosing. The firms that move fastest to build relationship-led pipelines now will own the quality end of this market before it consolidates.</p>
+
+    <div class="stat-strip">
+      <div class="stat-cell">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client audit success rate<br>claimed by RISCPoint on AWS</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Aug '25</div>
+        <div class="stat-label">CEO transition + stated expansion<br>into federal, commercial, international</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Now</div>
+        <div class="stat-label">FedRAMP 20x reshaping federal cloud<br>market — active buyer urgency</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>"2026 has been busier than our normal Q1. The SOC 2 market is being undermined by commodity reports and check-the-box approaches. Trust has eroded. Differentiated firms win through human-centered, credibility-led engagement."</p>
+      <cite>Jake Nix, Founder &amp; Chief Growth Officer · RISCPoint, April 2026</cite>
+    </div>
+  </div>
+
+  <!-- 05 WHO RISCPOINT IS -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <h2 class="section-title">Our Understanding of Your Business</h2>
+    <p class="section-intro">This brief reflects our research into RISCPoint before kickoff. The goal is to show our work on your market position so we can align on where Vieu creates the most leverage — and where you will sharpen us.</p>
+
+    <div class="cards" style="margin-bottom:24px;">
+      <div class="card accent-top">
+        <div class="card-eyebrow">Who RISCPoint Is</div>
+        <div class="card-title">Trust-Led Cybersecurity and Compliance Advisory</div>
+        <div class="card-body">Founded 2018, Cleveland. 42 employees. Serves Fortune 10 to pre-Series A across cybersecurity, compliance, privacy, cloud security, risk management, public sector, and virtual executive services. AWS Advanced Tier Services Partner and AWS Global Security and Compliance Acceleration Partner. FedRAMP and GovRAMP/StateRAMP accredited 3PAO and licensed CPA firm. 100% claimed client audit success rate. Actively scaling through the August 2025 executive transition: Jake Nix to CGO, Matt Drewyor to CEO.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">The RADAR Platform</div>
+        <div class="card-title">AI-Powered Penetration Testing as a Service</div>
+        <div class="card-body">Launched August 2024, RADAR is RISCPoint's first proprietary product — an AI-powered PTaaS platform that moves the firm beyond pure services into scalable delivery. RADAR creates a second growth vector with a distinct buyer persona (CISOs and security operations leaders at mid-market SaaS and cloud companies) that runs in parallel to the advisory and compliance motion. Vieu opens both pipelines simultaneously.</div>
+      </div>
+    </div>
+
+    <div style="background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 22px 24px;">
+      <div style="font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;">Why the GTM Model and Vieu Are a Natural Fit</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;">RISCPoint's stated model</div>
+          <ul style="list-style:none; font-size:13px; color:var(--ink-mid); line-height:1.7;">
+            <li style="margin-bottom:6px; padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> Customer journeys led by experts, not salespeople</li>
+            <li style="margin-bottom:6px; padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> Trust and credibility as the primary GTM differentiator</li>
+            <li style="padding-left:16px; position:relative;"><span style="position:absolute;left:0;color:var(--green);">&#x2713;</span> High-volume cold outbound explicitly misaligned with brand</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px;">What Vieu solves</div>
+          <p style="font-size:13px; color:var(--ink-mid); line-height:1.7;">Vieu helps RISCPoint's team convert ecosystem relationships into warm introductions with security, compliance, and cloud stakeholders in regulated accounts — so they can expand into federal, commercial, and international markets without relying on cold outreach that weakens brand trust.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 THE GTM CHALLENGE -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <h2 class="section-title">The GTM Challenge</h2>
+    <p class="section-intro">RISCPoint wins once it is in the room. Technical depth, audit track record, and FedRAMP 3PAO credibility carry the evaluation. The constraint is earlier in the funnel — specifically, the volume and quality of getting to the right people in the right accounts before the conversation is already happening with Coalfire, A-LIGN, or Schellman.</p>
+
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead><tr><th>Where It Works</th><th>Where It Stalls</th></tr></thead>
+          <tbody>
+            <tr><td>Technical and audit-level conversations once engaged</td><td>Getting to those conversations in the first place</td></tr>
+            <tr><td>Warm inbound via AWS partner co-sell and community events</td><td>Cold reach to CISOs, GRC leaders, and federal compliance buyers</td></tr>
+            <tr><td>FedRAMP and CMMC engagements where 3PAO credibility lands</td><td>Commercial enterprise at scale without existing network density</td></tr>
+            <tr><td>Existing client expansion and referrals</td><td>Activating those reference networks systematically for introductions</td></tr>
+            <tr><td>HITRUST, VantaCon, CrowdStrike community presence</td><td>Converting event relationships into pipeline without cold follow-up</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="pull-quote" style="margin-top:0;">
+          <p>"Growth in regulated markets depends on credibility, relationships, and trusted access — not higher-volume outbound."</p>
+          <cite>Vieu Account Intelligence · RISCPoint</cite>
+        </div>
+        <p style="font-size:13px; color:var(--ink-mid); line-height:1.7; margin-top:16px;">The goal is not to generate generic leads. It is to surface the 1,000 best-fit accounts with the right buying signals, identify the warm paths that already exist across RISCPoint's network, and give the growth team a prioritized, evidence-backed list to act on immediately.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 TARGET MARKET & PERSONAS -->
+  <div class="section">
+    <div class="section-number">07</div>
+    <h2 class="section-title">Target Market &amp; Buyer Personas</h2>
+    <p class="section-intro">RISCPoint's ICP spans two distinct motions: the advisory and compliance engagement (trust-heavy, multi-stakeholder, consultative) and the RADAR PTaaS product (security operations leader, more transactional). Both run in parallel. Vieu surfaces warm paths into both buyer profiles simultaneously.</p>
+
+    <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Tier 1 — Economic Buyers</p>
+    <div class="tag-group" style="margin-bottom:20px;">
+      <span class="tag tier1">CISO / VP Security</span>
+      <span class="tag tier1">Chief Compliance Officer</span>
+      <span class="tag tier1">CIO / CTO</span>
+      <span class="tag tier1">CEO / COO (SMB)</span>
+      <span class="tag tier1">FedRAMP Program Manager</span>
+    </div>
+    <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Tier 2 — Technical Buyers &amp; Influencers</p>
+    <div class="tag-group" style="margin-bottom:20px;">
+      <span class="tag tier2">GRC Director / Risk Executive</span>
+      <span class="tag tier2">Privacy Officer / General Counsel</span>
+      <span class="tag tier2">Head of Cloud / Platform Engineering</span>
+      <span class="tag tier2">Internal Audit / Third-Party Risk</span>
+      <span class="tag tier2">CMMC Program Lead</span>
+    </div>
+    <p style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:12px;">Priority Markets</p>
+    <div class="cards three">
+      <div class="card accent-top">
+        <div class="card-eyebrow">Primary Market</div>
+        <div class="card-title">United States — Commercial Enterprise</div>
+        <div class="card-body">Core market. Mid-market to enterprise organizations in healthcare, financial services, SaaS, and cloud-dependent industries with SOC 2, HIPAA, HITRUST, or ISO 27001 obligations. Displacement targets: organizations on Vanta or Drata hitting the ceiling of automated compliance, or accounts dissatisfied with Coalfire or A-LIGN pricing. Technographic signals identify these accounts before outreach.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">High-Value Market</div>
+        <div class="card-title">United States — Federal &amp; Defense</div>
+        <div class="card-body">RISCPoint's FedRAMP and GovRAMP accredited 3PAO status creates a differentiated wedge here. FedRAMP 20x reshaping is creating active buyer urgency at CSPs. CMMC Level 2/3 certification deadlines are concentrating defense contractor spend. Both motions require trusted access to program managers and authorization leads — exactly what Vieu surfaces.</div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Expansion Market</div>
+        <div class="card-title">International</div>
+        <div class="card-body">Stated expansion intent per the August 2025 CEO announcement. GDPR services confirm cross-border compliance capability. Specific countries not yet confirmed. Vieu can map international warm paths once priority geographies are defined — keep visible for connection discovery while commercial and federal motions are the primary lead generation focus.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 GTM PRIORITIES -->
+  <div class="section">
+    <div class="section-number">08</div>
+    <h2 class="section-title">GTM Priorities: First 4 Months</h2>
+    <p class="section-intro">The goal is 10 ACE registrations and a repeatable warm-intro pipeline across RISCPoint's three growth vectors: commercial advisory, federal 3PAO, and RADAR PTaaS. Every priority below is sequenced to move that outcome forward.</p>
+
+    <ul class="priority-list">
+      <li>
+        <div>
+          <div class="priority-item-title">Build your platform workflow in the first two weeks — speed to first warm path matters</div>
+          <div class="priority-item-body">The biggest predictor of outcome in a Tier 3 engagement is how fast the team moves from onboarding to active outreach. The goal is a warm path actioned within the first week. Vieu CS will walk the growth team through the platform, agree on the priority account list, and confirm the ICP filter set so the first searches return immediately actionable results. The 1,000-lead target is a floor, not a ceiling — the faster the team builds the workflow, the faster it compounds.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Lead with trust erosion as the opening thesis — RISCPoint's own market narrative is the entry point</div>
+          <div class="priority-item-body">Jake Nix's April 2026 thought leadership post — that commodity SOC 2 programs are creating hidden risk and that differentiated firms win through credibility — is the most powerful cold-to-warm conversion tool in the market right now. Every outreach from Vieu-sourced warm paths should anchor on this narrative: the person receiving the introduction already lives in this market and recognizes the problem. Vieu identifies the accounts and stakeholders most likely to agree with RISCPoint's point of view.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Use technographics to target Vanta and Drata accounts approaching the advisory ceiling</div>
+          <div class="priority-item-body">Organizations using automated compliance platforms often hit a point where the tool alone cannot carry them through a rigorous audit, a FedRAMP authorization, or a complex CMMC engagement. These accounts are actively looking for an advisory partner — they just do not always know it yet. Vieu's technographic layer surfaces them before they issue an RFP. For RISCPoint, this is the highest-conversion commercial entry point because the need is already implicit in the tech stack.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Activate the AWS partner network for co-sell into cloud security and FedRAMP accounts</div>
+          <div class="priority-item-body">RISCPoint's AWS Advanced Tier and Global Security and Compliance Acceleration Partner status create co-sell infrastructure that is currently underleveraged for new logo acquisition. Vieu maps AWS partner account managers and ecosystem contacts who work with both RISCPoint and their target accounts, surfacing the warm paths that turn AWS co-sell from a passive benefit into an active pipeline source. ACE registrations should flow directly from these conversations.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Run RADAR as a parallel track — the buyer persona is different and the motion is faster</div>
+          <div class="priority-item-body">RADAR's AI-powered PTaaS product has a distinct buyer: CISO and VP Security at mid-market SaaS and cloud companies. This is a more transactional conversation than advisory compliance work, and it often opens the door to broader RISCPoint engagements. Vieu builds a separate warm-path target list for RADAR's buyer persona so both tracks run simultaneously without competing for the same outreach capacity.</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="priority-item-title">Target FedRAMP 20x and CMMC deadline pressure as the highest-urgency federal entry points</div>
+          <div class="priority-item-body">FedRAMP 20x Phase 1 pilot ran through September 2025; broader requirements are formalizing now. CSPs navigating the new program need a trusted 3PAO with current program knowledge. CMMC Level 2/3 certification deadlines are creating concentrated spend among defense contractors in 2026. Both motions reward early trusted access over volume. Vieu surfaces warm paths to FedRAMP program managers, authorization leads, and CMMC program owners at the highest-priority targets.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 09 FROM KICKOFF TO OPPORTUNITIES -->
+  <div class="section">
+    <div class="section-number">09</div>
+    <h2 class="section-title">From Kickoff to Opportunities</h2>
+    <p class="section-intro">The platform is ready before the kickoff call. Here is how RISCPoint's team moves from onboarding through to 10 qualified ACE registrations over 4 months — running the full intelligence stack directly.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-phase">Before Kickoff · Platform Prepared</div>
+        <div class="timeline-head">RISCPoint's network is mapped, initial accounts surfaced</div>
+        <div class="timeline-body">Before the kickoff call, Vieu ingests RISCPoint's company network data and maps it against an initial target account set across commercial enterprise, federal/defense, and RADAR personas. Early connection signals are surfaced so the onboarding session starts with live examples, not a blank screen. In most cases there is at least one warm path ready to act on in week one.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-phase">Week 1 · Onboarding and First Searches</div>
+        <div class="timeline-head">Platform walkthrough, ICP filters confirmed, first warm paths activated</div>
+        <div class="timeline-body">Kickoff session covers platform walkthrough, ICP filter confirmation, and priority account list review. Jake Nix and the growth team run their first live searches. Vieu CS aligns on the three target lists: commercial advisory, FedRAMP/CMMC federal, and RADAR PTaaS. First warm paths are identified and the team begins outreach before the week ends.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-phase">Weeks 2-3 · Lead Delivery and Technographic Prioritization</div>
+        <div class="timeline-head">1,000 bounce-verified leads delivered, technographic filters applied</div>
+        <div class="timeline-body">The full 1,000 bounce-verified contact list is delivered and enriched. The team applies technographic filters to identify Vanta/Drata users, AWS-dependent accounts approaching compliance milestones, and defense contractors with active CMMC pressure. Priority accounts for ACE submission are identified. Account plans begin for the top 10-15 targets. Warm path outreach is running across all three tracks.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-phase">Weeks 4-8 · Pipeline Build</div>
+        <div class="timeline-head">First ACE registrations submitted, warm intro conversations progressing</div>
+        <div class="timeline-body">Active outreach from warm paths is converting into first conversations. The team identifies the strongest opportunities across commercial advisory, FedRAMP, and RADAR and begins building ACE submissions. Target: 3-5 ACE registrations by week 8. Weekly platform sessions track which accounts are progressing, which need a new angle, and which warm paths have not yet been acted on.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Months 3-4 · Scale and ACE Target</div>
+        <div class="timeline-head">10+ ACE registrations reached, pipeline compounds</div>
+        <div class="timeline-body">With warm path outreach running across all three tracks and the initial 1,000-lead list actively worked, the team reaches the 10+ ACE registration target. Look-alike expansion identifies new accounts beyond the original list. The platform workflow is established as a weekly rhythm, not a one-time exercise. AWS co-sell team is engaged on the strongest ACE opportunities.</div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Month 5 · Embed and Expand</div>
+        <div class="timeline-head">Motion is repeatable, international pipeline initiated</div>
+        <div class="timeline-body">The Vieu workflow is embedded in the growth team's weekly cadence. Active ACE opportunities are progressing through co-sell. International warm paths are mapped once priority geographies are confirmed. RADAR pipeline is a separate, growing track alongside advisory engagements. The 5-month window ends with a compounding motion, not a one-time campaign.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 WHAT SUCCESS LOOKS LIKE -->
+  <div class="section">
+    <div class="section-number">10</div>
+    <h2 class="section-title">What Success Looks Like</h2>
+    <p class="section-intro">Success is not measured by the volume of data delivered. It is measured by qualified ACE registrations, warm conversations with regulated-market buyers, and RISCPoint's growth team operating with a repeatable intelligence-driven motion by the end of month 5.</p>
+
+    <div class="cards three" style="margin-bottom:24px;">
+      <div class="card accent-top">
+        <div class="card-eyebrow">Primary Outcome</div>
+        <div class="card-title">10+ ACE Registrations in 4 Months</div>
+        <div class="card-body">10 or more qualified opportunities registered in the ACE Pipeline Manager within the 4-month engagement window. Each backed by a named decision-maker, a warm introduction path, and an account brief the AWS co-sell team can act on immediately.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">Pipeline Metric</div>
+        <div class="card-title">Trusted First Conversations</div>
+        <div class="card-body">The number of CISO, GRC Director, CIO, or federal compliance leader meetings initiated from Vieu-sourced warm paths. These are introductions backed by shared context and a credibility signal — not cold calls. Alignment with RISCPoint's brand promise from the first touchpoint.</div>
+      </div>
+      <div class="card accent-top">
+        <div class="card-eyebrow">Platform Metric</div>
+        <div class="card-title">Weekly Active Platform Use</div>
+        <div class="card-body">The growth team is running weekly searches, building account plans, and activating warm paths independently by week 3. Platform adoption is the leading indicator — a team using Vieu weekly compounds results; a team using it monthly does not. Speed of activation predicts outcome.</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>What We Are Measuring</th>
+          <th>What Good Looks Like at 60 Days</th>
+          <th>What Good Looks Like at 5 Months</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ACE registrations</strong></td>
+          <td>3-5 ACE opportunities submitted with named decision-makers and account briefs</td>
+          <td>10+ total ACE registrations; at least 3 in active co-sell qualification with AWS</td>
+        </tr>
+        <tr>
+          <td><strong>Platform adoption</strong></td>
+          <td>Growth team running weekly searches independently; warm paths actioned within 48 hours of identification</td>
+          <td>Platform embedded as standard weekly workflow; team no longer needs prompting to run searches</td>
+        </tr>
+        <tr>
+          <td><strong>Lead list activation</strong></td>
+          <td>1,000 bounce-verified leads delivered; top 100 prioritized and in active outreach</td>
+          <td>Full list worked; look-alike expansion identifies second cohort of 500+ accounts</td>
+        </tr>
+        <tr>
+          <td><strong>Technographic displacement</strong></td>
+          <td>Vanta/Drata accounts identified and first outreach sent; AWS-dependent compliance accounts in pipeline</td>
+          <td>At least one displacement opportunity in active evaluation with RISCPoint as the advisory alternative</td>
+        </tr>
+        <tr>
+          <td><strong>RADAR pipeline</strong></td>
+          <td>Separate RADAR target list active; first CISO-level warm paths initiated</td>
+          <td>RADAR pipeline running as an independent track; at least 2 ACE registrations from PTaaS motion</td>
+        </tr>
+        <tr>
+          <td><strong>Federal motion</strong></td>
+          <td>FedRAMP 20x and CMMC target accounts identified; first federal warm paths initiated</td>
+          <td>At least 2 federal ACE registrations; AWS co-sell team engaged on FedRAMP/CMMC opportunities</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div class="footer-left">
+      <strong>RISCPoint GTM Strategy Brief</strong><br>
+      Prepared by Vieu · June 2026 · Confidential<br>
+      Contact: serrah@vieu.com · Built on 9B Executive Relationships
+    </div>
+    <div class="footer-vieu">vieu</div>
+  </div>
+
+</div>
+</body>
+</html>
